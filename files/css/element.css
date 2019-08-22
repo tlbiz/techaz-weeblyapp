@@ -1,0 +1,64 @@
+/* element.css for the Simple Table element. */
+.simple-table-wrapper {
+    padding: 20px 0;
+}
+
+.simple-table {
+    @border: 1px solid @borderColor;
+
+    width: 100%;
+    border: @border;
+    border-spacing: 0;
+    table-layout: fixed;
+
+    .cells();
+
+
+    
+    /* styles for the cells inside the tables. handles styling the headlines (because those are rendered as regular <td>s, not <th>s)
+     * intended to the be called from the context of one of the themes. */
+    .cells() {
+
+        td.cell {
+            border-right: @border;
+            border-bottom: @border;
+            word-break: break-word;
+            background-color: @backgroundColor;
+
+            width: (100% * (1 / @columns));
+
+            & .paragraph {
+                width: 90%;
+                margin: 0 5%;
+                padding-bottom: 10px;
+                padding-top: 10px;
+                text-align: @alignment;              
+            }
+        }
+
+        /* title styles */
+        &.style-top tr:first-child td,
+        &.style-side td:first-of-type {
+            background-color: @titleColor;
+
+            .paragraph {
+                font-weight: 700;
+            }
+        }
+
+        /* fenceposting the borders */
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        td:last-of-type {
+            border-right: none;
+        }
+    }
+
+    /* centers the empty content */
+    .empty-content-area-element {
+        padding-left: 0px !important;
+    }
+}
+

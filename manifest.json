@@ -1,0 +1,126 @@
+{
+  "manifest": "1",
+  "version": "1.0.0",
+  "client_id": "1409708070",
+  "callback_url": "https://techaz-weebly.herokuapp.com/oauth/phase-one", 
+  "oauth_final_destination": "home",
+  "webhooks": {
+    "callback_url": "https://techaz-weebly.herokuapp.com/webhooks/callback",
+    "events": [
+      "user.update","site.publish", "site.delete", "app.uninstall"
+    ]
+  },
+  "scopes": [
+    "read:user",
+    "read:site"
+  ],
+  "locale": {
+    "default": "en-us",
+    "supported": ["en-us"]
+  },  
+  "elements": [
+    {
+      "name": "Simple Table",
+      "path": "files",
+      "version": "1.4.3",
+      "settings": {
+        "config": {
+          "autopop": false
+        },
+        "properties": [
+          {
+            "name": "settings",
+            "label": "Settings",
+            "type": "group",
+            "properties": [
+              {
+                "name": "columns",
+                "label": "Columns",
+                "type": "int",
+                "default": 4,
+                "step": 1,
+                "min": 1
+              },
+              {
+                "name": "rows",
+                "label": "Rows",
+                "type": "int",
+                "default": 3,
+                "step": 1,
+                "min": 1
+              },
+              {
+                "name": "style",
+                "label": "Style",
+                "type": "select",
+                "values": [
+                  {
+                    "name": "Basic",
+                    "value": "basic"
+                  },
+                  {
+                    "name": "Title on top",
+                    "value": "top"
+                  },
+                  {
+                    "name": "Title on side",
+                    "value": "side"
+                  }
+                ],
+                "default": "top"
+              },
+              {
+                "name": "alignment",
+                "label": "Align",
+                "type": "align",
+                "default": "center"
+              }
+            ]
+          },
+          {
+            "name": "advanced",
+            "label": "Advanced",
+            "type": "group",
+            "properties": [
+              {
+                "name": "titleColor",
+                "label": "Title Background",
+                "type": "color",
+                "default": "#F8F8F8"
+              },
+              {
+                "name": "backgroundColor",
+                "label": "Content Background",
+                "type": "color",
+                "default": "#FFFFFF"
+              },
+              {
+                "name": "borderColor",
+                "label": "Border Color",
+                "type": "color",
+                "default": "#C9CDCF"
+              },
+              {
+                "name": "tableSizes",
+                "label": "Table Sizes",
+                "type": "string",
+                "hidden": "true",
+                "default": "default"
+              }
+            ]
+          }
+        ]
+      },
+      "tutorial": {
+        "introduction": "Simple Table provides a quick and easy way to organize and display information on your website.",
+        "type": "steps",
+        "content": [
+          "Plan out your table and set up the app accordingly. Click on the element to access settings and adjust the number of rows and columns using the + and - buttons, or by typing directly into the number field.",
+          "Choose a display style and colors. You can set colors for the border, title, and content backgrounds, and change the alignment for the table.",
+          "Add your information to the table. Click into each cell and type or paste your text in. You can modify the look of selected text within the table using the text editing tool bar."
+        ],
+        "autopop": true
+      }
+    }
+  ]
+}
