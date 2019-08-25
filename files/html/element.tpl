@@ -1,11 +1,14 @@
-<div class="simple-table-wrapper">
-  <table class="simple-table style-{{style}}">
-    {{#rows_each}}
-      <tr>
-        {{#columns_each}}
-          <td class="cell">{textAt_{{rows_index}}_{{columns_index}}:text default="Value"}</td>
-        {{/columns_each}}
-      </tr>
-    {{/rows_each}}
-  </table>
+<div class="accordion accordion--{{style}} no-touch">
+    {{#items_each}} 
+        <div class="accordion__item" data-item="{{items_index}}">
+            <div class="accordion__title">
+                <span>{title_{{items_index}}:text default="title {{items_index}}"}<span>
+            </div>
+            <div class="accordion__content">
+                <div style="padding: 10px 20px 20px;">
+                    {content_{{items_index}}:content}
+                </div>
+            </div>
+        </div>
+    {{/items_each}}
 </div>

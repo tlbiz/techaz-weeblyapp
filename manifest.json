@@ -16,108 +16,82 @@
   ],
   "locale": {
     "default": "en-us",
-    "supported": ["en-us"]
-  },  
+    "supported": [
+      "en-us"
+    ]
+  },
   "elements": [
     {
-      "name": "Simple Table",
       "path": "files",
-      "version": "1.4.3",
+      "name": "Accordion",
+      "version": "1.3.9",
       "settings": {
-        "config": {
-          "autopop": false
-        },
+        "config": {},
         "properties": [
           {
+            "type": "group",
             "name": "settings",
             "label": "Settings",
-            "type": "group",
             "properties": [
               {
-                "name": "columns",
-                "label": "Columns",
-                "type": "int",
-                "default": 4,
-                "step": 1,
-                "min": 1
-              },
-              {
-                "name": "rows",
-                "label": "Rows",
+                "name": "items",
+                "label": "Number of Items",
                 "type": "int",
                 "default": 3,
-                "step": 1,
-                "min": 1
+                "min": "1",
+                "max": "100",
+                "step": 1
               },
               {
                 "name": "style",
                 "label": "Style",
                 "type": "select",
+                "default": "simple",
                 "values": [
                   {
-                    "name": "Basic",
-                    "value": "basic"
+                    "name": "Simple",
+                    "value": "simple"
                   },
                   {
-                    "name": "Title on top",
-                    "value": "top"
+                    "name": "Box",
+                    "value": "box"
                   },
                   {
-                    "name": "Title on side",
-                    "value": "side"
+                    "name": "Material",
+                    "value": "material"
                   }
-                ],
-                "default": "top"
+                ]
               },
               {
-                "name": "alignment",
-                "label": "Align",
-                "type": "align",
-                "default": "center"
-              }
-            ]
-          },
-          {
-            "name": "advanced",
-            "label": "Advanced",
-            "type": "group",
-            "properties": [
-              {
-                "name": "titleColor",
+                "name": "title_background",
                 "label": "Title Background",
                 "type": "color",
-                "default": "#F8F8F8"
+                "default": "#E0E0E0"
               },
               {
-                "name": "backgroundColor",
+                "name": "content_background",
                 "label": "Content Background",
                 "type": "color",
-                "default": "#FFFFFF"
+                "default": "#FAFAFA"
               },
               {
-                "name": "borderColor",
-                "label": "Border Color",
-                "type": "color",
-                "default": "#C9CDCF"
-              },
-              {
-                "name": "tableSizes",
-                "label": "Table Sizes",
+                "name": "active_index",
+                "label": "active_index",
                 "type": "string",
-                "hidden": "true",
-                "default": "default"
+                "default": "-1",
+                "hidden": "true"
               }
             ]
           }
         ]
       },
       "tutorial": {
-        "introduction": "Simple Table provides a quick and easy way to organize and display information on your website.",
+        "introduction": "Accordion creates a list of items that individually expand on click to display content.",
         "type": "steps",
         "content": [
-          "Plan out your table and set up the app accordingly. Click on the element to access settings and adjust the number of rows and columns using the + and - buttons, or by typing directly into the number field.",
-          "Choose a display style and colors. You can set colors for the border, title, and content backgrounds, and change the alignment for the table.",
-          "Add your information to the table. Click into each cell and type or paste your text in. You can modify the look of selected text within the table using the text editing tool bar."
+          "Select the number of items in your list. You can use the + and - buttons to adjust the amount or click directly into the number field to type in a number.",
+          "Configure the look of the app. You can choose one of three different display styles and set the background colors for the title and content areas.",
+          "Give each item a title and add content. Click on a title to type in a name and expand the content area. You can drag and position multiple elements here just like you can on any Weebly page. You can even add other apps, so go ahead and think outside the box!"
         ],
         "autopop": true
       }

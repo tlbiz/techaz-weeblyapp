@@ -1,64 +1,207 @@
-/* element.css for the Simple Table element. */
-.simple-table-wrapper {
-    padding: 20px 0;
+/**
+ * Put all of your styles for your element in here!
+ * @required
+ *
+ * Variables from settings */
+// @title_background
+// @content_background
+
+/**
+ * Other variables that get reused
+ */
+@expand-sign: '+';
+@collapse-sign: '\2013';
+@title-height: 45px;
+@gutter: 20px;
+@transition: 500ms ease;
+
+/**
+ * Calculated contrast variables
+ */
+@title-contrast: contrast(@title_background, #424242, #FAFAFA);
+@content-contrast: contrast(@content_background, #424242, #FAFAFA);
+
+/**
+ * Calculated mix variables
+ */
+@title-mix: mix(@title_background, @title-contrast);
+@content-mix: mix(@content_background, @content-contrast);
+
+/**
+ * Text Field Overrides
+ */
+.paragraph {
+    padding: 0 !important;
+    margin: 0 !important;
 }
 
-.simple-table {
-    @border: 1px solid @borderColor;
-
-    width: 100%;
-    border: @border;
-    border-spacing: 0;
-    table-layout: fixed;
-
-    .cells();
-
-
+& > .accordion {
+    padding: @gutter 0;
     
-    /* styles for the cells inside the tables. handles styling the headlines (because those are rendered as regular <td>s, not <th>s)
-     * intended to the be called from the context of one of the themes. */
-    .cells() {
+    &--simple {
+        .base-style();
+    }
 
-        td.cell {
-            border-right: @border;
-            border-bottom: @border;
-            word-break: break-word;
-            background-color: @backgroundColor;
+    &--material {
+        .base-style();
+        .material-style();
+    }
 
-            width: (100% * (1 / @columns));
+    &--box {
+        .base-style();
+        .box-style();
+    }
 
-            & .paragraph {
-                width: 90%;
-                margin: 0 5%;
-                padding-bottom: 10px;
-                padding-top: 10px;
-                text-align: @alignment;              
-            }
-        }
-
-        /* title styles */
-        &.style-top tr:first-child td,
-        &.style-side td:first-of-type {
-            background-color: @titleColor;
-
-            .paragraph {
-                font-weight: 700;
-            }
-        }
-
-        /* fenceposting the borders */
-        tr:last-child td {
-            border-bottom: none;
-        }
-
-        td:last-of-type {
-            border-right: none;
+    &--simple {
+        &.no-touch {
+            .base-style();
+            .base-notouch();
         }
     }
 
-    /* centers the empty content */
-    .empty-content-area-element {
-        padding-left: 0px !important;
+    &--material {
+        &.no-touch {
+            .base-style();
+            .base-notouch();
+            .material-style();
+            .material-notouch();
+        }
+    }
+
+    &--box {
+        &.no-touch {
+            .base-style();
+            .base-notouch();
+            .box-style();
+            .box-notouch();
+        }
     }
 }
 
+.base-notouch() {
+    .accordion__item {
+        & > .accordion__title:hover {
+            opacity: 1;
+            
+            span {
+                opacity: 1;
+            }
+        }
+    }
+}
+
+.material-notouch() {
+    .accordion__item:hover {
+        box-shadow: @box-shadow;
+        z-index: 3;
+    }
+}
+
+.box-notouch() {
+    .accordion__item:hover {
+        z-index: 3;
+    }
+}
+
+.base-style() {
+    .accordion__item {
+        width: 100%;
+        display: block;
+        position: relative;
+        margin-bottom: 0;
+        background-color: #FFFFFF;
+        height: 100%;
+        box-sizing: border-box;
+        
+        & > .accordion__title {
+            width: 100%;
+            background-color: @title_background;
+            padding: 10px @gutter;
+            font-weight: bold !important;
+            text-transform: uppercase;
+            box-sizing: border-box;
+            font-size: 1.25rem;
+            transition: 250ms ease;
+            opacity: 0.75;
+            cursor: pointer;
+            min-height: @title-height;
+
+            span {
+                opacity: 0.5;
+            }
+            
+            &::after {
+                content: @expand-sign;
+                position: absolute;
+                float: right;
+                top: 10px;
+                right: @gutter;
+                font-size: 1.25em;
+                opacity: 0.5;
+                color: @title-mix;
+            }
+        }
+        
+        & > .accordion__content {
+            display: none;
+            width: 100%;
+            box-sizing: border-box;
+            font-size: 1rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: 500ms ease;
+            background-color: @content_background;
+        }
+        
+        &.active {
+            & > .accordion__title {
+                background-color: @content_background;
+                opacity: 1;
+                
+                span {
+                    opacity: 1;
+                }
+
+                &::after {
+                    content: @collapse-sign;
+                    color: @content-mix;
+                }
+            }
+
+            & > .accordion__content {
+                display: block;
+                max-height: 1000px;
+                transition: 500ms ease;
+            }
+        }
+    }
+}
+
+.material-style() {
+    @box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    
+    & > .accordion__item {
+        margin-bottom: 1px;
+        box-shadow: none;
+        transition: 500ms ease;
+        z-index: 1;
+        
+        &.active {
+            box-shadow: @box-shadow;
+            z-index: 3;
+        }
+    }
+}
+
+.box-style() {
+    & > .accordion__item {
+        transition: 500ms ease;
+        border: 1px solid @title-mix;
+        z-index: 1;
+        
+        &.active {
+            z-index: 3;
+            border: 1px solid @content-mix;
+        }
+    }
+}
